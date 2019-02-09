@@ -2,16 +2,10 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use BubbleSorter\Item\FloatItem;
-
 $comparer = new \BubbleSorter\Comparer\FloatComparer();
-$items = [
-    new FloatItem(5),
-    new FloatItem(1),
-    new FloatItem(8),
-    new FloatItem(12),
-    new FloatItem(8),
-];
+$floatItemsCreator = new \BubbleSorter\Item\Creator\FloatCreator();
+$floatItemsArrayCreator = new \BubbleSorter\Item\Creator\FloatArrayCreator($floatItemsCreator);
+$items = $floatItemsArrayCreator->createFromArray(...[5, 8, 3, 12, 3]);
 
 $collection = new BubbleSorter\Collection\Collection($comparer, ...$items);
 
