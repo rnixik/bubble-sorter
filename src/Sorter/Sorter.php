@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BubbleSorter\Sorter;
 
 use BubbleSorter\Collection\CollectionInterface;
@@ -27,8 +29,10 @@ final class Sorter implements SorterInterface
         foreach ($iItems as $i => $_) {
             $jItems = $generator->generate(0, $i - 1, DirectionEnum::FORWARD);
             foreach ($jItems as $j => $item) {
-                if ($sortedCollection->isBigger($sortedCollection->offsetGet($j - 1), $sortedCollection->offsetGet($j))) {
-                    $sortedCollection->swap($j - 1, $j);
+                $itemA = $sortedCollection->offsetGet($j + 1);
+                $itemB = $sortedCollection->offsetGet($j);
+                if (!$sortedCollection->isBigger($itemA, $itemB)) {
+                    $sortedCollection->swap($j + 1, $j);
                 }
             }
         }

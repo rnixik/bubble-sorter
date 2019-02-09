@@ -1,18 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BubbleSorter\Collection;
 
 use BubbleSorter\Comparer\ComparerInterface;
+use BubbleSorter\Item\AbstractItem;
 
-final class NumericCollection implements CollectionInterface
+final class Collection implements CollectionInterface
 {
     /** @var ComparerInterface */
     private $comparer;
 
-    /** @var float[] */
+    /** @var AbstractItem[] */
     private $items;
 
-    public function __construct(ComparerInterface $comparer, float ...$items)
+    public function __construct(ComparerInterface $comparer, AbstractItem ...$items)
     {
         $this->comparer = $comparer;
         $this->items = $items;
@@ -21,7 +24,7 @@ final class NumericCollection implements CollectionInterface
     /**
      * @inheritdoc
      */
-    public function isBigger(object $itemA, object $itemB): bool
+    public function isBigger(AbstractItem $itemA, AbstractItem $itemB): bool
     {
         return $this->comparer->isBigger($itemA, $itemB);
     }

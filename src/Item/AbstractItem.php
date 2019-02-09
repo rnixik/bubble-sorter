@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BubbleSorter\Item;
 
-class AbstractItem
+abstract class AbstractItem
 {
 
 }

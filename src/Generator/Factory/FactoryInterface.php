@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BubbleSorter\Generator\Factory;
 
-use BubbleSorter\Generator\CollectionGenerator;
+use BubbleSorter\Generator\GeneratorInterface;
 
 interface FactoryInterface
 {
     /**
      * Returns empty instance of generator
      *
-     * @return CollectionGenerator
+     * @return GeneratorInterface
      */
-    public function create(): CollectionGenerator;
+    public function create(): GeneratorInterface;
 }

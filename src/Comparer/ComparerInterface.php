@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace BubbleSorter\Collection;
+namespace BubbleSorter\Comparer;
 
 use BubbleSorter\Item\AbstractItem;
-use BubbleSorter\Swapper\SwapperInterface;
 
-interface CollectionInterface extends \ArrayAccess, \Countable, SwapperInterface
+interface ComparerInterface
 {
     /**
      * Compares two items
