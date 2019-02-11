@@ -11,7 +11,9 @@ $collection = new BubbleSorter\Collection\Collection($comparer, ...$items);
 
 $generatorFactory = new BubbleSorter\Generator\Factory\Factory();
 $generatorBuilder = new \BubbleSorter\Generator\Builder\Builder($generatorFactory);
-$sorter = new \BubbleSorter\Sorter\Sorter($generatorBuilder);
+$comparer = new BubbleSorter\Comparer\FloatComparer();
+$swapper = new \BubbleSorter\Swapper\Swapper();
+$sorter = new \BubbleSorter\Sorter\Sorter($generatorBuilder, $comparer, $swapper);
 $sortedCollection = $sorter->sort($collection);
 
 print_r($sortedCollection);

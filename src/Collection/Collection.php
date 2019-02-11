@@ -24,59 +24,26 @@ final class Collection implements CollectionInterface
     /**
      * @inheritdoc
      */
-    public function isBigger(AbstractItem $itemA, AbstractItem $itemB): bool
+    public function get(int $itemIndex): AbstractItem
     {
-        return $this->comparer->isBigger($itemA, $itemB);
+        return $this->items[$itemIndex];
     }
 
     /**
      * @inheritdoc
      */
-    public function offsetExists($offset)
+    public function set(int $itemIndex, AbstractItem $item): CollectionInterface
     {
-        return isset($this->items[$offset]);
+        $items = $this->items;
+        $items[$itemIndex] = $item;
+        return new Collection($this->comparer, ...$items);
     }
 
     /**
      * @inheritdoc
      */
-    public function offsetGet($offset)
-    {
-        return $this->items[$offset];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function offsetSet($offset, $value)
-    {
-        $this->items[$offset] = $value;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function offsetUnset($offset)
-    {
-        unset($this->items[$offset]);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function count()
+    public function count(): int
     {
         return count($this->items);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function swap(int $indexA, int $indexB): void
-    {
-        $elementA = $this->items[$indexA];
-        $elementB = $this->items[$indexB];
-        $this->items[$indexA] = $elementB;
-        $this->items[$indexB] = $elementA;
     }
 }

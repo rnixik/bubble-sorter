@@ -5,17 +5,30 @@ declare(strict_types=1);
 namespace BubbleSorter\Sorter;
 
 use BubbleSorter\Collection\CollectionInterface;
+use BubbleSorter\Comparer\ComparerInterface;
 use BubbleSorter\Generator\Builder\BuilderInterface;
 use BubbleSorter\Generator\DirectionEnum;
+use BubbleSorter\Swapper\SwapperInterface;
 
 final class Sorter implements SorterInterface
 {
     /** @var BuilderInterface */
     private $generatorBuilder;
 
-    public function __construct(BuilderInterface $generatorBuilder)
-    {
+    /** @var ComparerInterface */
+    private $comparer;
+
+    /** @var SwapperInterface */
+    private $swapper;
+
+    public function __construct(
+        BuilderInterface $generatorBuilder,
+        ComparerInterface $comparer,
+        SwapperInterface $swapper
+    ) {
         $this->generatorBuilder = $generatorBuilder;
+        $this->comparer = $comparer;
+        $this->swapper = $swapper;
     }
 
     /**
@@ -29,10 +42,10 @@ final class Sorter implements SorterInterface
         foreach ($iItems as $i => $_) {
             $jItems = $generator->generate(0, $i - 1, DirectionEnum::FORWARD);
             foreach ($jItems as $j => $item) {
-                $itemA = $sortedCollection->offsetGet($j + 1);
-                $itemB = $sortedCollection->offsetGet($j);
-                if (!$sortedCollection->isBigger($itemA, $itemB)) {
-                    $sortedCollection->swap($j + 1, $j);
+                $itemA = $sortedCollection->get($j + 1);
+                $itemB = $sortedCollection->get($j);
+                if (!$this->comparer->isBigger($itemA, $itemB)) {
+                    $sortedCollection = $this->swapper->swap($sortedCollection, $j + 1, $j);
                 }
             }
         }

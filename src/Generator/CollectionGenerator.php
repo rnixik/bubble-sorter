@@ -26,11 +26,11 @@ final class CollectionGenerator implements GeneratorInterface
     {
         if ($direction === DirectionEnum::FORWARD) {
             for ($i = $startIndex; $i <= $stopIndex; $i++) {
-                (yield $i => $this->collection[$i]);
+                (yield $i => $this->collection->get($i));
             }
         } else {
             for ($i = $startIndex; $i >= $stopIndex; $i--) {
-                (yield $i => $this->collection[$i]);
+                (yield $i => $this->collection->get($i));
             }
         }
     }
