@@ -4,8 +4,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $comparer = new \BubbleSorter\Comparer\FloatComparer();
 $floatItemsCreator = new \BubbleSorter\Item\Creator\FloatCreator();
-$floatItemsArrayCreator = new \BubbleSorter\Item\Creator\FloatArrayCreator($floatItemsCreator);
-$items = $floatItemsArrayCreator->createFromArray(...[5, 8, 3, 12, 3]);
+$floatItemsArrayCreator = new \BubbleSorter\Item\Creator\FloatsFromListCreator($floatItemsCreator);
+$items = $floatItemsArrayCreator->createFromList(...[5, 8, 3, 12, 3]);
 
 $collection = new BubbleSorter\Collection\Collection($comparer, ...$items);
 

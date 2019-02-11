@@ -6,7 +6,7 @@ namespace BubbleSorter\Item\Creator;
 
 use BubbleSorter\Item\FloatItem;
 
-class FloatArrayCreator
+class FloatsFromListCreator
 {
     /** @var FloatCreatorInterface */
     private $floatCreator;
@@ -20,7 +20,7 @@ class FloatArrayCreator
      * @param float ...$floats
      * @return FloatItem[]
      */
-    public function createFromArray(float ...$floats): array
+    public function createFromList(float ...$floats): array
     {
         $arrayOfItems = [];
         foreach ($floats as $float) {
