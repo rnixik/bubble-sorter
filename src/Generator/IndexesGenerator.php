@@ -6,17 +6,14 @@ namespace BubbleSorter\Generator;
 
 use BubbleSorter\Collection\CollectionGetterInterface;
 
-final class CollectionGenerator implements GeneratorInterface
+final class IndexesGenerator implements GeneratorInterface
 {
-    /** @var CollectionGetterInterface */
-    private $collection;
-
     /**
      * @inheritdoc
      */
     public function setCollection(CollectionGetterInterface $collection): void
     {
-        $this->collection = $collection;
+        // Nothing to do
     }
 
     /**
@@ -26,11 +23,11 @@ final class CollectionGenerator implements GeneratorInterface
     {
         if ($direction === DirectionEnum::FORWARD) {
             for ($i = $startIndex; $i <= $stopIndex; $i++) {
-                (yield $i => $this->collection->get($i));
+                yield $i;
             }
         } else {
             for ($i = $startIndex; $i >= $stopIndex; $i--) {
-                (yield $i => $this->collection->get($i));
+                yield $i;
             }
         }
     }

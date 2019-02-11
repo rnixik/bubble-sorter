@@ -38,10 +38,10 @@ final class Sorter implements SorterInterface
     {
         $sortedCollection = clone $collection;
         $generator = $this->generatorBuilder->build($sortedCollection);
-        $iItems = $generator->generate($sortedCollection->count() - 1, 0, DirectionEnum::BACKWARD);
-        foreach ($iItems as $i => $_) {
-            $jItems = $generator->generate(0, $i - 1, DirectionEnum::FORWARD);
-            foreach ($jItems as $j => $__) {
+        $iIndexes = $generator->generate($sortedCollection->count() - 1, 0, DirectionEnum::BACKWARD);
+        foreach ($iIndexes as $i) {
+            $jIndexes = $generator->generate(0, $i - 1, DirectionEnum::FORWARD);
+            foreach ($jIndexes as $j) {
                 $itemA = $sortedCollection->get($j + 1);
                 $itemB = $sortedCollection->get($j);
                 if (!$this->comparer->isBigger($itemA, $itemB)) {

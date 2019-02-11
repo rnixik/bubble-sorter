@@ -11,14 +11,16 @@ $items = $floatItemsFromListCreator->createFromList(...$floatsToSort);
 
 $collection = new \BubbleSorter\Collection\Collection(...$items);
 
-$generatorFactory = new \BubbleSorter\Generator\Factory\Factory();
-$generatorBuilder = new \BubbleSorter\Generator\Builder\Builder($generatorFactory);
+$indexesGeneratorFactory = new \BubbleSorter\Generator\Factory\IndexesGeneratorFactory();
+$indexesGeneratorBuilder = new \BubbleSorter\Generator\Builder\Builder($indexesGeneratorFactory);
 $comparer = new \BubbleSorter\Comparer\FloatComparer();
 $swapper = new \BubbleSorter\Swapper\Swapper();
-$sorter = new \BubbleSorter\Sorter\Sorter($generatorBuilder, $comparer, $swapper);
+$sorter = new \BubbleSorter\Sorter\Sorter($indexesGeneratorBuilder, $comparer, $swapper);
 $sortedCollection = $sorter->sort($collection);
 
-$extractor = new \BubbleSorter\Item\Extractor\FloatsToArrayExtractor($generatorBuilder);
+$itemsGeneratorFactory = new \BubbleSorter\Generator\Factory\ItemsGeneratorFactory();
+$itemsGeneratorBuilder = new \BubbleSorter\Generator\Builder\Builder($itemsGeneratorFactory);
+$extractor = new \BubbleSorter\Item\Extractor\FloatsToArrayExtractor($itemsGeneratorBuilder);
 $sortedFloats = $extractor->extract($sortedCollection);
 
 print_r($sortedFloats);
