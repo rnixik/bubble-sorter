@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace BubbleSorter\Generator;
 
-use BubbleSorter\Collection\CollectionInterface;
+use BubbleSorter\Collection\CollectionGetterInterface;
 
 interface GeneratorInterface
 {
     /**
      * Sets a collection for generator
      *
-     * @param CollectionInterface $collection
+     * @param CollectionGetterInterface $collection
      */
-    public function setCollection(CollectionInterface $collection): void;
+    public function setCollection(CollectionGetterInterface $collection): void;
 
     /**
      * @param int $startIndex index in collection to start generation at

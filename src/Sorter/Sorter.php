@@ -41,7 +41,7 @@ final class Sorter implements SorterInterface
         $iItems = $generator->generate($sortedCollection->count() - 1, 0, DirectionEnum::BACKWARD);
         foreach ($iItems as $i => $_) {
             $jItems = $generator->generate(0, $i - 1, DirectionEnum::FORWARD);
-            foreach ($jItems as $j => $item) {
+            foreach ($jItems as $j => $__) {
                 $itemA = $sortedCollection->get($j + 1);
                 $itemB = $sortedCollection->get($j);
                 if (!$this->comparer->isBigger($itemA, $itemB)) {

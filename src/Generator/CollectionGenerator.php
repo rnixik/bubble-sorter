@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace BubbleSorter\Generator;
 
-use BubbleSorter\Collection\CollectionInterface;
+use BubbleSorter\Collection\CollectionGetterInterface;
 
 final class CollectionGenerator implements GeneratorInterface
 {
-    /** @var CollectionInterface */
+    /** @var CollectionGetterInterface */
     private $collection;
 
     /**
      * @inheritdoc
      */
-    public function setCollection(CollectionInterface $collection): void
+    public function setCollection(CollectionGetterInterface $collection): void
     {
         $this->collection = $collection;
     }
