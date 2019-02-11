@@ -4,20 +4,15 @@ declare(strict_types=1);
 
 namespace BubbleSorter\Collection;
 
-use BubbleSorter\Comparer\ComparerInterface;
 use BubbleSorter\Item\AbstractItem;
 
 final class Collection implements CollectionInterface
 {
-    /** @var ComparerInterface */
-    private $comparer;
-
     /** @var AbstractItem[] */
     private $items;
 
-    public function __construct(ComparerInterface $comparer, AbstractItem ...$items)
+    public function __construct(AbstractItem ...$items)
     {
-        $this->comparer = $comparer;
         $this->items = $items;
     }
 
@@ -36,7 +31,7 @@ final class Collection implements CollectionInterface
     {
         $items = $this->items;
         $items[$itemIndex] = $item;
-        return new Collection($this->comparer, ...$items);
+        return new Collection(...$items);
     }
 
     /**
