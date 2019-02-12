@@ -3,6 +3,8 @@
 A library which can sort items using bubble sort. 
 Written with OOP, SOLID and love.
 
+[![Build Status][ico-travis]][link-travis]
+
 ## Sorting
 
 ```php
@@ -53,3 +55,7 @@ Work is in progress.
 ## License
 
 The MIT License
+
+[ico-travis]: https://img.shields.io/travis/rnixik/bubble-sorter/master.svg?style=flat-square
+
+[link-travis]: https://travis-ci.org/rnixik/bubble-sorter
